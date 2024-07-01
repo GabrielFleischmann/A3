@@ -5,7 +5,6 @@ public class Jogador {
     private int vida = 100;
     private int ouro = 0;
     private int experiencia = 0;
-    private int turnoExtra = 0;
     private int multiplicadorDeDanoDoAtaque = 1;
 
     public Jogador (String nome){
@@ -18,14 +17,6 @@ public class Jogador {
 
     public void setMultiplicadorDeDanoDoAtaque(int multiplicadorDeDanoDoAtaque){
         this.multiplicadorDeDanoDoAtaque = multiplicadorDeDanoDoAtaque;
-    }
-
-    public void setTurnoExtra(int numero){
-        this.turnoExtra = numero;
-    }
-
-    public int getTurnoExtra(){
-        return turnoExtra;
     }
 
     public String getNome() {
