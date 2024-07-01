@@ -144,13 +144,13 @@ public class Tabuleiro{
                     quebraEsferas();
 
                     if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
-                        turnos.getJogadorDaVez().setTurnoExtra(1);
+                        turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                        turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
                     }else{
-                        turnos.contador = turnos.contador +1;
+                        turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                        turnos.novaJogada(turnos.getAdversario(), turnos.getJogadorDaVez(), tabuleiro, turnos);
                     }
-
-                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
-                    turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
+    
                 }
             break;
 
@@ -167,13 +167,13 @@ public class Tabuleiro{
                 quebraEsferas();
                 
                 if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
-                    turnos.getJogadorDaVez().setTurnoExtra(1);
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
                 }else{
-                    turnos.contador = turnos.contador +1;
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getAdversario(), turnos.getJogadorDaVez(), tabuleiro, turnos);
                 }
 
-                turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
-                turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
             break;
 
             //AÇÃO ESFERA AZUL / NOSSO BORDO
@@ -190,13 +190,13 @@ public class Tabuleiro{
                 quebraEsferas();
 
                 if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
-                    turnos.getJogadorDaVez().setTurnoExtra(1);
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
                 }else{
-                    turnos.contador = turnos.contador +1;
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getAdversario(), turnos.getJogadorDaVez(), tabuleiro, turnos);
                 }
-                
-                turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
-                turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
+
             break;
 
             //AÇÃO ESFERA VERDE / NOSSO AZUL
@@ -212,13 +212,13 @@ public class Tabuleiro{
                 quebraEsferas();
 
                 if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
-                    turnos.getJogadorDaVez().setTurnoExtra(1);
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
                 }else{
-                    turnos.contador = turnos.contador +1;
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getAdversario(), turnos.getJogadorDaVez(), tabuleiro, turnos);
                 }
 
-                turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
-                turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
             break;
 
             //AÇÃO ESFERA AMARELA / NOSSO VERDE
@@ -227,10 +227,13 @@ public class Tabuleiro{
                 turnos.getAdversario().setOuro(0);
 
                 if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
-                    turnos.getJogadorDaVez().setTurnoExtra(1);
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
                 }else{
-                    turnos.contador = turnos.contador +1;
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getAdversario(), turnos.getJogadorDaVez(), tabuleiro, turnos);
                 }
+
             break;
 
             //AÇÃO OURO 
@@ -243,29 +246,29 @@ public class Tabuleiro{
                 if (turnos.getJogadorDaVez().getOuro() >= 10){
                     turnos.getJogadorDaVez().setOuro(0);
                     turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(2);
+
+                    if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
+                        turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
+                    }else{
+                        turnos.novaJogada(turnos.getAdversario(), turnos.getJogadorDaVez(), tabuleiro, turnos);
+                    }
                 }
                 quebraEsferas();
 
                 if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
-                    turnos.getJogadorDaVez().setTurnoExtra(1);
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
                 }else{
-                    turnos.contador = turnos.contador +1;
+                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                    turnos.novaJogada(turnos.getAdversario(), turnos.getJogadorDaVez(), tabuleiro, turnos);
                 }
-                
-                turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
-                turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
+
             break;
 
             //AÇÃO EXPERIÊNCIA
             //Adiciona 1 ponto de experiência por sequência com bônus.
             //Obs: Sendo assim se a sequencia possui 3 experiência eu ganharia 1 experiência, com 4 - 2 experiência e 5 - 3 experiência
             case 6:
-
-                if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
-                    turnos.getJogadorDaVez().setTurnoExtra(1);
-                }else{
-                    turnos.contador = turnos.contador +1;
-                }
 
                 turnos.getJogadorDaVez().setExperiencia(turnos.getJogadorDaVez().getExperiencia() + (quantidadeDeEsferas - 2));
                 if (turnos.getJogadorDaVez().getExperiencia() >= 10) {
@@ -278,11 +281,16 @@ public class Tabuleiro{
                     }else{
                         turnos.getAdversario().setVidaMax(turnos.getAdversario().getVida()-10);
                         quebraEsferas();
-                        turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
+
+                        if(quantidadeDeEsferas == 5 | quantidadeDeEsferas == 4){
+                            turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                            turnos.novaJogada(turnos.getJogadorDaVez(), turnos.getAdversario(), tabuleiro, turnos);
+                        }else{
+                            turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
+                            turnos.novaJogada(turnos.getAdversario(), turnos.getJogadorDaVez(), tabuleiro, turnos);
+                        }
                     }
                 }
-
-                turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
             break;
         }    
     }

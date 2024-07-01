@@ -16,14 +16,10 @@ public class Turno{
    }
 
    public void novaJogada(Jogador jogador1, Jogador jogador2, int[][] tabuleiro, Turno inicial){
-       if (contador % 2 == 0 | jogador1.getTurnoExtra() == 1){
-           jogadorDaVez = jogador1;
-           adversario = jogador2;
-       }else{
-           jogadorDaVez = jogador2;
-           adversario = jogador1;
-       }
-
+    
+        jogadorDaVez = jogador1;
+        adversario = jogador2;
+      
         //PROCESSO DE CHECAGEM E VALIDAÇÃO DO TABULEIRO A CADA TURNO
         Tabuleiro tab = new Tabuleiro(tabuleiro, inicial);
         tab.validaTab();
