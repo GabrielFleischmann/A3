@@ -40,6 +40,66 @@ public class Menu {
                 inicial.novaJogada(jogador1, jogador2, tab.getTabuleiro(), inicial);
                 
             break;
+            //CARREGANDO JOGO
+            case 2:
+                System.out.println("Selecione um jogo salvo para carregar:");
+                mostrarSaves();
+                int carregarSave = numeros.nextInt();
+                carregarJogo();
+                break;
+
+
+            //DELETANDO JOGO EXISTENTE
+            case 3:
+                deletarJogo();
+                executaMenu();
+                break;
+
+            case 0:
+                break;
+        }
+    }
+
+
+    //PEGA O DIRETORIO DE SAVES E LISTA OS ARQUIVOS
+    private File diretorio = new File("Saves\\");
+    private File[] arquivos = diretorio.listFiles();
+
+    public void mostrarSaves(){
+        for (int i = 0; i < arquivos.length; i++) {
+            System.out.printf("%s", arquivos[i].getName());
+            System.out.println();
+        }
+    }
+
+    public void carregarJogo(){
+
+    }
+
+    public void salvarJogo(){
+        
+    }
+
+    public void deletarJogo(){
+        if(arquivos.length > 0) {
+
+            System.out.println("Digite o nome completo do save que deseja apagar:");
+            mostrarSaves();
+
+            File save = new File("Saves\\" + strings.nextLine().toUpperCase());
+
+            if (save.delete()) {
+                System.out.println("O save foi deletado");
+            } else {
+                System.out.println("Erro ao deletar save! Tente novamente");
+            }
+
+        }else{
+            System.out.println("--- Não há saves para deletar ---");
+        }
+    }
+
+}
 
 
 
