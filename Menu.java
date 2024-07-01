@@ -33,6 +33,12 @@ public class Menu {
 
                 System.out.print("Digite o nome do jogador 2: ");
                 Jogador jogador2 = new Jogador(strings.nextLine().toUpperCase());
+
+                //DANDO INÍCIO AO JOGO
+                Turno inicial = new Turno();
+                Tabuleiro tab = new Tabuleiro(inicial);
+                inicial.novaJogada(jogador1, jogador2, tab.getTabuleiro(), inicial);
+                
             break;
 
 
