@@ -109,30 +109,19 @@ public class Tabuleiro{
                     quantidadeDeEsferas = 5;
                     tipoDeEsfera = tabuleiro[i][j];
                 }
-            }
-        }
-
-        for (int i = 2; i < tabuleiro.length-2; i++) {
-            for (int j = 2; j < tabuleiro[i].length-2; j++) {
-
                 //CHECA ESFERAS ALINHDAS NA HORIZONTAL, NA VERTICAL
                 //CASO 4 ESFERAS
-                if(tabuleiro[i][j-2] == tabuleiro[i][j-1] && tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i][j+1] | 
+                else if(tabuleiro[i][j-2] == tabuleiro[i][j-1] && tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i][j+1] | 
                 tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i][j+1] && tabuleiro[i][j+1] == tabuleiro[i][j+2] |  
                 tabuleiro[i-2][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i+1][j] |
                 tabuleiro[i-1][j] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] == tabuleiro[i+2][j]){
                     quantidadeDeEsferas = 4;
                     tipoDeEsfera = tabuleiro[i][j];
 
-                }
-            }
-        }
-        for (int i = 1; i < tabuleiro.length-1; i++) {
-            for (int j = 1; j < tabuleiro[i].length-1; j++) {
-
+                } 
                 //CHECA ESFERAS ALINHDAS NA HORIZONTAL, NA VERTICAL
                 //CASO 3 ESFERAS
-                if (tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i][j+1]|
+                else if (tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i][j+1]|
                     tabuleiro[i-1][j] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i+1][j]){
                     
                     quantidadeDeEsferas = 3;
@@ -325,7 +314,7 @@ public class Tabuleiro{
                     }
 
                     validaTab(); 
-                    checaSeHaJogadas();               
+                    //checaSeHaJogadas();               
 
                 //VERTICAL
                 } else if(tabuleiro[i-2][j]== tabuleiro[i-1][j] && tabuleiro[i-1][j] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] == tabuleiro[i+2][j]){
@@ -343,7 +332,7 @@ public class Tabuleiro{
                     }
 
                     validaTab();
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
 
                 //CASO FORMAR UM 'L'
                 } else if(tabuleiro[i-2][j]==tabuleiro[i-1][j]&&tabuleiro[i-1][j]==tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j+1]&&tabuleiro[i][j+1]==tabuleiro[i][j+2]){
@@ -368,7 +357,7 @@ public class Tabuleiro{
                     }
 
                     validaTab(); 
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
 
                 } else if(tabuleiro[i-2][j]==tabuleiro[i-1][j]&&tabuleiro[i-1][j]==tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j-1]&&tabuleiro[i][j-1]==tabuleiro[i][j-2]){
 
@@ -393,7 +382,7 @@ public class Tabuleiro{
                     }
 
                     validaTab(); 
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
 
                 } else if(tabuleiro[i+2][j]==tabuleiro[i+1][j]&&tabuleiro[i+1][j]==tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j+1]&&tabuleiro[i][j+1]==tabuleiro[i][j+2]){
                     
@@ -416,7 +405,7 @@ public class Tabuleiro{
                     }
 
                     validaTab(); 
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
                 
                 }else if(tabuleiro[i+2][j]==tabuleiro[i+1][j]&&tabuleiro[i+1][j]==tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j-1]&&tabuleiro[i][j-1]==tabuleiro[i][j-2]){
 
@@ -439,7 +428,7 @@ public class Tabuleiro{
                     }
 
                     validaTab(); 
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
 
                 //CASO FORMAR UM "T"
                 } else if(tabuleiro[i][j] == tabuleiro[i][j+1] && tabuleiro[i][j] == tabuleiro[i][j-1] && tabuleiro[i][j] == tabuleiro [i+1][j] && tabuleiro[i][j] == tabuleiro [i+2][j]){
@@ -464,7 +453,7 @@ public class Tabuleiro{
                     }
 
                     validaTab();
-                    checaSeHaJogadas(); 
+                    //checaSeHaJogadas(); 
 
                 } else if (tabuleiro[i][j] == tabuleiro[i][j+1] && tabuleiro[i][j] == tabuleiro[i][j-1] && tabuleiro[i][j] == tabuleiro [i-1][j] && tabuleiro[i][j] == tabuleiro [i-2][j]) {
 
@@ -487,7 +476,7 @@ public class Tabuleiro{
                     }
 
                     validaTab();
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
 
                 //CHECA 4 ESFERAS
                 }else if(tabuleiro[i][j-2] == tabuleiro[i][j-1] && tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i][j+1]){
@@ -510,7 +499,7 @@ public class Tabuleiro{
                     }
 
                     validaTab(); 
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
 
                 }else if(tabuleiro[i][j-1] == tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j+1]&&tabuleiro[i][j+1]==tabuleiro[i][j+2]){
                     //HORIZONTAL
@@ -531,7 +520,7 @@ public class Tabuleiro{
                     }
 
                     validaTab(); 
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
                  
                 }else if(tabuleiro[i-1][j]!=tabuleiro[i-2][j]||tabuleiro[i-1][j] == tabuleiro[i][j] && tabuleiro[i][j]== tabuleiro[i+1][j]&&tabuleiro[i+1][j]==tabuleiro[i+2][j]){
 
@@ -549,7 +538,7 @@ public class Tabuleiro{
                     }
 
                     validaTab();
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
                       
                 }else if(tabuleiro[i-2][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j]== tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i-1][j]){
                     
@@ -568,7 +557,7 @@ public class Tabuleiro{
                     }
 
                     validaTab();
-                    checaSeHaJogadas();
+                    //checaSeHaJogadas();
                 
                 //CHECA 3 ESFERAS
                 }else if(tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j]== tabuleiro[i][j+1]){
@@ -606,7 +595,7 @@ public class Tabuleiro{
                 }
                 
                 validaTab();
-                checaSeHaJogadas();
+                //checaSeHaJogadas();
             }
         }
     }
@@ -677,7 +666,6 @@ public class Tabuleiro{
                 }else if(tabuleiroComJogadasValidas){
                     fazTab();
                     validaTab();
-                    checaSeHaJogadas();
                 }
             }
         }
