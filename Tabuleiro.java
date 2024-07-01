@@ -34,7 +34,6 @@ public class Tabuleiro{
        }
    }
 
-
    //IMPRIME O TABULEIRO
    public void imprimeTab(){
     System.out.println("    1   2   3   4   5   6   7   8");
@@ -46,7 +45,6 @@ public class Tabuleiro{
         System.out.println();
     }
    }
-
 
    //VALIDA O TABULEIRO
    public void validaTab(){
@@ -572,7 +570,6 @@ public class Tabuleiro{
                     validaTab();
                     checaSeHaJogadas();
                 
-
                 //CHECA 3 ESFERAS
                 }else if(tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j]== tabuleiro[i][j+1]){
                     

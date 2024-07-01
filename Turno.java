@@ -40,7 +40,6 @@ public class Turno{
         int x;
         int y;
 
-
         do{
             System.out.printf("\nTurno de: %s", jogadorDaVez.getNome());
             System.out.print("\nDigite o número da linha da sua Esfera:");
@@ -64,24 +63,18 @@ public class Turno{
                 menu.executaMenu();
             }
 
-
             if (x > 8| x <= 0 | y > 8 | y <=0){
                 System.out.println("Elemento Inválido");
                 novaJogada(jogador1, jogador2, tabuleiro, inicial);
-
 
             } else{
                 System.out.printf("O símbolo que você escolheu é %s. L: %d, C: %d, correto?\n1 - Sim / 2 - Não\n", new Esferas(tabuleiro[x-1][y-1]), x, y);
                 voltar = numeros.nextInt();
             }
-
-
         }while(voltar == 2);
-
 
         System.out.print("Digite uma das opções mover a esfera:\nw - Para cima\ns - Para baixo\na - esquerda\nd - direita\n");
         char direcao = strings.nextLine().toUpperCase().charAt(0);
-
 
         if(direcao == 'W'){
             tabuleiro[x-2][y-1] = tabuleiro[x-1][y-1];
@@ -100,5 +93,4 @@ public class Turno{
             tab.checaEsferas();
         }
     }
-   
 }
