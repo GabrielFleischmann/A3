@@ -614,9 +614,76 @@ public class Tabuleiro{
         }
     }
 
+    public void checaSeHaJogadas(){
+
+        boolean tabuleiroComJogadasValidas = false;
+        
+        for (int i = 2; i < tabuleiro.length-2; i++) {
+            for(int j = 2; j < tabuleiro[i].length-2; j++){
+
+                //CHECANDO MESMOS CASOS DE QUEBRA ESFERAS, MAS UM PASSO ANTERIOR A "JOGADA POSSÍVEL"
+                //CASO ALINHE 5 ESFERAS
+                //HORIZONTAL
+                if(tabuleiro[i][j-2] == tabuleiro[i][j-1] && tabuleiro[i][j-1] != tabuleiro[i][j] && tabuleiro[i][j-1] == tabuleiro[i][j+1] && tabuleiro[i][j+1] == tabuleiro[i][j+2] && tabuleiro [i+1][j] == tabuleiro[i][j-2] | tabuleiro[i][j-2] == tabuleiro[i][j-1] && tabuleiro[i][j-1] != tabuleiro[i][j] && tabuleiro[i][j-1]== tabuleiro[i][j+1] && tabuleiro[i][j+1] == tabuleiro[i][j+2] && tabuleiro [i-1][j] == tabuleiro[i][j-2]){
+                    tabuleiroComJogadasValidas = true;
+
+                //VERTICAL
+                } else if(tabuleiro[i-2][j]== tabuleiro[i-1][j] && tabuleiro[i-1][j] != tabuleiro[i][j] && tabuleiro[i-1][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] == tabuleiro[i+2][j] && tabuleiro[i][j+1] == tabuleiro[i-2][j]| tabuleiro[i-2][j]== tabuleiro[i-1][j] && tabuleiro[i-1][j] != tabuleiro[i][j] && tabuleiro[i-1][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] == tabuleiro[i+2][j] && tabuleiro[i][j-1] == tabuleiro[i-2][j]){
+                    tabuleiroComJogadasValidas = true;
+
+                //CASO DOS Ls 
+                }else if(tabuleiro[i-2][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j] != tabuleiro [i][j] && tabuleiro[i-1][j] == tabuleiro [i][j+1] && tabuleiro [i][j+1] == tabuleiro [i][j+2] && tabuleiro [i+1][j] == tabuleiro [i][j+2]|tabuleiro[i-2][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j] != tabuleiro [i][j] && tabuleiro[i-1][j] == tabuleiro [i][j+1] && tabuleiro [i][j+1] == tabuleiro [i][j+2] && tabuleiro [i][j-1] == tabuleiro [i][j-2]){
+                    tabuleiroComJogadasValidas = true;
+
+                } else if (tabuleiro[i-2][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j] != tabuleiro [i][j] && tabuleiro[i-1][j] == tabuleiro [i][j-1] && tabuleiro [i][j-1] == tabuleiro [i][j-2] && tabuleiro [i+1][j] == tabuleiro [i][j+2]|tabuleiro[i-2][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j] != tabuleiro [i][j] && tabuleiro[i-1][j] == tabuleiro [i][j+1] && tabuleiro [i][j+1] == tabuleiro [i][j+2] && tabuleiro [i][j+1] == tabuleiro [i][j-2]) {
+                    tabuleiroComJogadasValidas = true;
+
+                }else if (tabuleiro[i+2][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] != tabuleiro [i][j] && tabuleiro[i+1][j] == tabuleiro [i][j+1] && tabuleiro [i][j+1] == tabuleiro [i][j+2] && tabuleiro [i-1][j] == tabuleiro [i][j+2]|tabuleiro[i+2][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] != tabuleiro [i][j] && tabuleiro[i+1][j] == tabuleiro [i][j+1] && tabuleiro [i][j+1] == tabuleiro [i][j+2] && tabuleiro [i][j-1] == tabuleiro [i][j+2]) {
+                    tabuleiroComJogadasValidas = true;
+
+                }else if (tabuleiro[i+2][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] != tabuleiro [i][j] && tabuleiro[i-1][j] == tabuleiro [i][j-1] && tabuleiro [i][j-1] == tabuleiro [i][j-2] && tabuleiro [i-1][j] == tabuleiro [i][j+2]|tabuleiro[i+2][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] != tabuleiro [i][j] && tabuleiro[i-1][j] == tabuleiro [i][j-1] && tabuleiro [i][j-1] == tabuleiro [i][j-2] && tabuleiro [i][j+1] == tabuleiro [i][j+2]) {
+                    tabuleiroComJogadasValidas = true;
+
+                //CASO DOS Ts
+                }else if (tabuleiro[i][j-1] != tabuleiro[i][j] && tabuleiro[i][j-1] == tabuleiro[i][j+1] && tabuleiro [i][j+1] == tabuleiro[i+1][j] && tabuleiro[i+1][j] == tabuleiro[i+2][j] && tabuleiro[i-1][j] == tabuleiro[i][j-1]) {
+                    tabuleiroComJogadasValidas = true;
+
+                }else if (tabuleiro[i][j-1] != tabuleiro[i][j] && tabuleiro[i][j-1] == tabuleiro[i][j+1] && tabuleiro[i-1][j] == tabuleiro [i-2][j] && tabuleiro[i+1][j] == tabuleiro [i-2][j]) {
+                    tabuleiroComJogadasValidas = true;
+
+                //CASO ALINHE 4 ESFERAS
+                //HORIZONTAL
+                }else if(tabuleiro[i][j-1] != tabuleiro[i][j] && tabuleiro[i][j-1] == tabuleiro[i][j+1] && tabuleiro[i][j+1] == tabuleiro[i][j+2] && tabuleiro[i+1][j] == tabuleiro [i][j-1] | tabuleiro[i][j-1] != tabuleiro[i][j] && tabuleiro[i][j-1] == tabuleiro[i][j+1] && tabuleiro[i][j+1] == tabuleiro[i][j+2] && tabuleiro[i-1][j] == tabuleiro [i][j-1]){
+                    tabuleiroComJogadasValidas = true;
+
+                }else if(tabuleiro[i][j+1] != tabuleiro[i][j] && tabuleiro[i][j+1] == tabuleiro[i][j-1] && tabuleiro[i][j-1] == tabuleiro[i][j-2] && tabuleiro[i+1][j] == tabuleiro [i][j+1] | tabuleiro[i][j+1] != tabuleiro[i][j] && tabuleiro[i][j+1] == tabuleiro[i][j-1] && tabuleiro[i][j-1] == tabuleiro[i][j-2] && tabuleiro[i-1][j] == tabuleiro [i][j+1]){
+                    tabuleiroComJogadasValidas = true;
+
+                //VERTICAL
+                }else if(tabuleiro[i-1][j] != tabuleiro[i][j] && tabuleiro[i-1][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] == tabuleiro[i+2][j] && tabuleiro[i][j-1] == tabuleiro[i-1][j] | tabuleiro[i-1][j] != tabuleiro[i][j] && tabuleiro[i-1][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] == tabuleiro[i+2][j] && tabuleiro[i][j+1] == tabuleiro[i-1][j]){
+                    tabuleiroComJogadasValidas = true;
+
+                }else if(tabuleiro[i+1][j] != tabuleiro[i][j] && tabuleiro[i+1][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j] == tabuleiro[i-2][j] && tabuleiro[i][j-1] == tabuleiro[i+1][j] | tabuleiro[i+1][j] != tabuleiro[i][j] && tabuleiro[i+1][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j] == tabuleiro[i-2][j] && tabuleiro[i][j+1] == tabuleiro[i+1][j]){
+                    tabuleiroComJogadasValidas = true;
+
+                //CASO ALINHE 3 ESFERAS
+                //HORIZONTAL
+                }else if(tabuleiro[i][j-1] != tabuleiro [i][j] && tabuleiro[i][j-1] == tabuleiro[i][j+1] && tabuleiro[i+1][j] == tabuleiro [i][j-1] | tabuleiro[i][j-1] != tabuleiro [i][j] && tabuleiro[i][j-1] == tabuleiro[i][j+1] && tabuleiro[i-1][j] == tabuleiro [i][j-1]){
+                    tabuleiroComJogadasValidas = true;
+
+                //VERTICAL
+                }else if(tabuleiro[i-1][j]!= tabuleiro [i][j] && tabuleiro[i-1][j] == tabuleiro[i+1][j] && tabuleiro[i][j+1] == tabuleiro[i-1][j] | tabuleiro[i-1][j]!= tabuleiro [i][j] && tabuleiro[i-1][j] == tabuleiro[i+1][j] && tabuleiro[i][j-1] == tabuleiro[i-1][j]){
+                    tabuleiroComJogadasValidas = true;
 
 
-
-
+                //CASO NÃO HAJA JOGADAS NO TABULEIRO, ELE SE REFAZ
+                }else if(tabuleiroComJogadasValidas){
+                    fazTab();
+                    validaTab();
+                    checaSeHaJogadas();
+                }
+            }
+        }
+    }   
 }
 
