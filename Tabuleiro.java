@@ -300,6 +300,320 @@ public class Tabuleiro{
         }    
     }
 
+    public void quebraEsferas(){
+
+        for (int i = 2; i < tabuleiro.length-2; i++) {
+            for (int j = 2; j < tabuleiro[i].length-2; j++) {
+
+                //CASO ALINHE 5 ESFERAS
+                //HORIZONTAL
+                if(tabuleiro[i][j-2] == tabuleiro[i][j-1] && tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j]== tabuleiro[i][j+1] && tabuleiro[i][j+1] == tabuleiro[i][j+2]){
+
+                    //QUEBRA AS ESFERAS
+                    tabuleiro[i][j-2] = 7;    
+                    tabuleiro[i][j-1] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+                    tabuleiro[i][j+2] = 7;
+
+                    //DESCENDO AS ESFERAS RESTANTES/JOGANDO O VAZIO PARA O TOPO
+                    for(int k = i-1; k >= 0; k--){
+
+                        tabuleiro[i][j-2] = tabuleiro[k][j-2];    
+                        tabuleiro[i][j-1] = tabuleiro[k][j-1] ;
+                        tabuleiro[i][j] = tabuleiro[k][j];
+                        tabuleiro[i][j+1] = tabuleiro[k][j+1];
+                        tabuleiro[i][j+2] = tabuleiro[k][j+2];
+                    }
+
+                    validaTab(); 
+                    checaSeHaJogadas();               
+
+                //VERTICAL
+                } else if(tabuleiro[i-2][j]== tabuleiro[i-1][j] && tabuleiro[i-1][j] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i+1][j] && tabuleiro[i+1][j] == tabuleiro[i+2][j]){
+                
+                    //QUEBRA ESFERAS
+                    tabuleiro[i-2][j] = 7;
+                    tabuleiro[i-1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i+1][j] = 7;
+                    tabuleiro[i+2][j] = 7;
+
+                    //DESCENDO AS ESFERAS RESTANTES/JOGANDO O VAZIO PARA O TOPO
+                    for(int k = i-1; k >= 0; k--){
+                        tabuleiro[k +2][j] = tabuleiro[k][j];
+                    }
+
+                    validaTab();
+                    checaSeHaJogadas();
+
+                //CASO FORMAR UM 'L'
+                } else if(tabuleiro[i-2][j]==tabuleiro[i-1][j]&&tabuleiro[i-1][j]==tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j+1]&&tabuleiro[i][j+1]==tabuleiro[i][j+2]){
+
+                    //QUEBRA ESFERAS
+                    tabuleiro[i-2][j] = 7;
+                    tabuleiro[i-1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+                    tabuleiro[i][j+2] = 7;
+
+                    //REAJUSTANDO AS LINHAS DO CASO EM L
+                    //CASO 1 "L"
+                    for (int k = i-1; k >= 0; k--) {
+    
+                        tabuleiro[k+2][j] = tabuleiro[k][j];
+                    }
+                    for (int k = i-1; k >= 0; k--) {
+                        
+                        tabuleiro[i][j+1] = tabuleiro[k][j+1];    
+                        tabuleiro[i][j+2] = tabuleiro[k][j+2];
+                    }
+
+                    validaTab(); 
+                    checaSeHaJogadas();
+
+                } else if(tabuleiro[i-2][j]==tabuleiro[i-1][j]&&tabuleiro[i-1][j]==tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j-1]&&tabuleiro[i][j-1]==tabuleiro[i][j-2]){
+
+                    
+                    //QUEBRA ESFERAS
+                    tabuleiro[i-2][j] = 7;
+                    tabuleiro[i-1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j-1] = 7;
+                    tabuleiro[i][j-2] = 7;
+                    
+                    //REAJUSTANDO AS LINHAS DO CASO EM L
+                    //CASO 2 👆
+                    
+                    for(int k = i-1; k <= 0; k--){
+                        tabuleiro[k+2][j] = tabuleiro[k][j];
+                    }
+                    for (int k = i-1; k >= 0; k--) {
+                        
+                        tabuleiro[i][j-1] = tabuleiro[k][j-1];    
+                        tabuleiro[i][j-2] = tabuleiro[k][j-2];
+                    }
+
+                    validaTab(); 
+                    checaSeHaJogadas();
+
+                } else if(tabuleiro[i+2][j]==tabuleiro[i+1][j]&&tabuleiro[i+1][j]==tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j+1]&&tabuleiro[i][j+1]==tabuleiro[i][j+2]){
+                    
+                    //QUEBRA ESFERAS
+                    tabuleiro[i+2][j] = 7;
+                    tabuleiro[i+1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+                    tabuleiro[i][j+2] = 7;
+
+                    //REAJUSTANDO AS LINHAS DO CASO EM L
+                    //CASO 3 👇
+                    for(int k = i-1; k <= 0; k--){
+                        tabuleiro[k+2][j] = tabuleiro[k][j];
+                    }
+                    for (int k = i-1; k >= 0; k--) {
+                        
+                        tabuleiro[i][j+1] = tabuleiro[k][j+1];    
+                        tabuleiro[i][j+2] = tabuleiro[k][j+2];
+                    }
+
+                    validaTab(); 
+                    checaSeHaJogadas();
+                
+                }else if(tabuleiro[i+2][j]==tabuleiro[i+1][j]&&tabuleiro[i+1][j]==tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j-1]&&tabuleiro[i][j-1]==tabuleiro[i][j-2]){
+
+                    //QUEBRA ESFERAS
+                    tabuleiro[i-2][j] = 7;
+                    tabuleiro[i-1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j-1] = 7;
+                    tabuleiro[i][j-2] = 7;
+
+                    //REAJUSTANDO AS LINHAS DO CASO EM L
+                    //CASO 4 👇 (AO CONTRÁRIO)
+                    for(int k = i-1; k <= 0; k--){
+                        tabuleiro[k+2][j] = tabuleiro[k][j];
+                    }
+                    for (int k = i-1; k >= 0; k--) {
+                        
+                        tabuleiro[i][j-1] = tabuleiro[k][j-1];    
+                        tabuleiro[i][j-2] = tabuleiro[k][j-2];
+                    }
+
+                    validaTab(); 
+                    checaSeHaJogadas();
+
+                //CASO FORMAR UM "T"
+                } else if(tabuleiro[i][j] == tabuleiro[i][j+1] && tabuleiro[i][j] == tabuleiro[i][j-1] && tabuleiro[i][j] == tabuleiro [i+1][j] && tabuleiro[i][j] == tabuleiro [i+2][j]){
+
+                    //CASO 1 T
+
+                    //QUEBRA ESFERAS
+                    tabuleiro[i+2][j] = 7;
+                    tabuleiro[i+1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+                    tabuleiro[i][j-1] = 7;
+
+                    //REAJUSTANDO
+                    for(int k = i-1; k <= 0; k--){
+                        tabuleiro[k+2][j] = tabuleiro[k][j];
+                    }
+                    for (int k = i-1; k >= 0; k--) {
+                        
+                        tabuleiro[i][j-1] = tabuleiro[k][j-1];    
+                        tabuleiro[i][j+1] = tabuleiro[k][j-2];
+                    }
+
+                    validaTab();
+                    checaSeHaJogadas(); 
+
+                } else if (tabuleiro[i][j] == tabuleiro[i][j+1] && tabuleiro[i][j] == tabuleiro[i][j-1] && tabuleiro[i][j] == tabuleiro [i-1][j] && tabuleiro[i][j] == tabuleiro [i-2][j]) {
+
+                    //CASE T (DE CABEÇA PARA BAIXO)
+                    //QUEBRA ESFERAS
+                    tabuleiro[i-1][j] = 7;
+                    tabuleiro[i-2][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+                    tabuleiro[i][j-1] = 7;
+
+                    //REAJUSTANDO
+                    for(int k = i-1; k <= 0; k--){
+                        tabuleiro[k+2][j] = tabuleiro[k][j];
+                    }
+                    for (int k = i-1; k >= 0; k--) {
+                        
+                        tabuleiro[i][j-1] = tabuleiro[k][j-1];    
+                        tabuleiro[i][j+1] = tabuleiro[k][j-2];
+                    }
+
+                    validaTab();
+                    checaSeHaJogadas();
+
+                //CHECA 4 ESFERAS
+                }else if(tabuleiro[i][j-2] == tabuleiro[i][j-1] && tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j] == tabuleiro[i][j+1]){
+                    
+                    //HORIZONTAL
+                    //QUEBRA AS ESFERAS
+                    tabuleiro[i][j-2] = 7;    
+                    tabuleiro[i][j-1] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+                    
+
+                    //DESCENDO AS ESFERAS RESTANTES/JOGANDO O VAZIO PARA O TOPO
+                    for(int k = i-1; k >= 0; k--){
+
+                        tabuleiro[i][j-2] = tabuleiro[i][k-2];    
+                        tabuleiro[i][j-1] = tabuleiro[i][k-1] ;
+                        tabuleiro[i][j] = tabuleiro[i][k];
+                        tabuleiro[i][j+1] = tabuleiro[i][k+1];
+                    }
+
+                    validaTab(); 
+                    checaSeHaJogadas();
+
+                }else if(tabuleiro[i][j-1] == tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i][j+1]&&tabuleiro[i][j+1]==tabuleiro[i][j+2]){
+                    //HORIZONTAL
+                    //QUEBRA AS ESFERAS
+                    tabuleiro[i][j-1] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+                    tabuleiro[i][j+2] = 7;    
+                    
+
+                    //DESCENDO AS ESFERAS RESTANTES/JOGANDO O VAZIO PARA O TOPO
+                    for(int k = i-1; k >= 0; k--){
+
+                        tabuleiro[i][j-1] = tabuleiro[i][k-1] ;
+                        tabuleiro[i][j] = tabuleiro[i][k];
+                        tabuleiro[i][j+1] = tabuleiro[i][k+1];
+                        tabuleiro[i][j+2] = tabuleiro[i][k+2];    
+                    }
+
+                    validaTab(); 
+                    checaSeHaJogadas();
+                 
+                }else if(tabuleiro[i-1][j]!=tabuleiro[i-2][j]||tabuleiro[i-1][j] == tabuleiro[i][j] && tabuleiro[i][j]== tabuleiro[i+1][j]&&tabuleiro[i+1][j]==tabuleiro[i+2][j]){
+
+                    //VERTICAL
+                    //QUEBRA AS ESFERAS
+            
+                    tabuleiro[i-2][j] = 7;
+                    tabuleiro[i-1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i+1][j] = 7;
+                    
+                    //DESCENDO AS ESFERAS RESTANTES/JOGANDO O VAZIO PARA O TOPO
+                    for(int k = i-1; k >= 0; k--){
+                        tabuleiro[k+2][j] = tabuleiro[k][j];
+                    }
+
+                    validaTab();
+                    checaSeHaJogadas();
+                      
+                }else if(tabuleiro[i-2][j] == tabuleiro[i-1][j] && tabuleiro[i-1][j]== tabuleiro[i][j]&&tabuleiro[i][j]==tabuleiro[i-1][j]){
+                    
+                    //VERTICAL
+                    //QUEBRA AS ESFERAS
+            
+                    tabuleiro[i-1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i+1][j] = 7;
+                    tabuleiro[i+2][j] = 7;
+                    
+                    //DESCENDO AS ESFERAS RESTANTES/JOGANDO O VAZIO PARA O TOPO
+                    for(int k = i-1; k >= 0; k--){
+                        
+                        tabuleiro[k+2][j] = tabuleiro[k][j];  
+                    }
+
+                    validaTab();
+                    checaSeHaJogadas();
+                
+
+                //CHECA 3 ESFERAS
+                }else if(tabuleiro[i][j-1] == tabuleiro[i][j] && tabuleiro[i][j]== tabuleiro[i][j+1]){
+                    
+                    //HORIZONTAL
+                    //QUEBRA AS ESFERAS
+                    tabuleiro[i][j-1] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+
+                    //DESCENDO AS ESFERAS RESTANTES/JOGANDO O VAZIO PARA O TOPO
+                    for(int k = i-1; k >= 0; k--){
+
+                        tabuleiro[i][j-1] = tabuleiro[k][j-1] ;
+                        tabuleiro[i][j] = tabuleiro[k][j];
+                        tabuleiro[i][j+1] = tabuleiro[k][j+1];
+                    }
+
+                    validaTab();
+
+                }else if(tabuleiro[i-1][j] == tabuleiro[i][j] && tabuleiro[i][j]== tabuleiro[i+1][j]){
+                    
+                    //VERTICAL
+                    //QUEBRA AS ESFERAS
+                    tabuleiro[i-1][j] = 7;
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i+1][j] = 7;
+
+                    //DESCENDO AS ESFERAS RESTANTES/JOGANDO O VAZIO PARA O TOPO
+                    for(int k = i-1; k >= 0; k--){
+                        tabuleiro[k+2][j] = tabuleiro[k][j];
+
+                    }
+                
+                }
+                
+                validaTab();
+                checaSeHaJogadas();
+            }
+        }
+    }
+
 
 
 
