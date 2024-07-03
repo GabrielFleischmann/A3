@@ -9,11 +9,11 @@ public class Esferas {
         switch (numeroAleatorio) {
 
             case 0:
-                this.simbolo = Terminal.CAVEIRA + "☻" + Terminal.RESET;
+                this.simbolo = Terminal.CAVEIRA + "☺︎" + Terminal.RESET;
                 break;
 
             case 1:
-                this.simbolo = Terminal.ROXO + "♥" + Terminal.RESET;
+                this.simbolo = Terminal.ROXO + "♥︎" + Terminal.RESET;
                 break;
 
             case 2:
@@ -21,23 +21,23 @@ public class Esferas {
                 break;
 
             case 3:
-                this.simbolo = Terminal.AZUL + "♠" + Terminal.RESET;
+                this.simbolo = Terminal.AZUL + "♠︎" + Terminal.RESET;
                 break;
 
             case 4:
-                this.simbolo = Terminal.VERDE + "♣" + Terminal.RESET;
+                this.simbolo = Terminal.VERDE + "♣︎" + Terminal.RESET;
                 break;
 
             case 5:
-                this.simbolo = Terminal.OURO + "♦" + Terminal.RESET;
+                this.simbolo = Terminal.OURO + "♦︎" + Terminal.RESET;
                 break;
 
             case 6:
-                this.simbolo = Terminal.EXP + "○" + Terminal.RESET;
+                this.simbolo = Terminal.EXP + "☯︎" + Terminal.RESET;
                 break;
 
             case 7:
-                this.simbolo = null;
+                this.simbolo = " ";
 
             default:
                 this.simbolo = "" + simbolo;

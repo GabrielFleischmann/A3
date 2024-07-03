@@ -1,8 +1,8 @@
 public class Jogador {
 
     private String nome;
-    private int vidaMax = 100;
-    private int vida = 100;
+    private int vidaMax = 5;
+    private int vida = 5;
     private int ouro = 0;
     private int experiencia = 0;
     private int multiplicadorDeDanoDoAtaque = 1;
