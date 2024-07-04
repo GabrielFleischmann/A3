@@ -34,9 +34,8 @@ public class Turno{
     
         jogadorDaVez = jogador1;
         adversario = jogador2;
-        int x;
-        int y;
-
+    
+    
         //INÍCIO DO TURNO
         Tabuleiro tab = new Tabuleiro(tabuleiro, inicial);
         System.out.println("\n(Digitar 0 nas coordenadas sempre retorna ao menu principal)");
@@ -47,26 +46,23 @@ public class Turno{
         Scanner strings = new Scanner(System.in);
         
         int voltar = 0;
+        int x;
+        int y;
         
         do{
             System.out.printf("\nTurno de: %s", jogadorDaVez.getNome());
             System.out.print("\nDigite o número da linha da sua Esfera:");
             x = numeros.nextInt() - 1;
 
-            if(x == -1){
-                Menu menu = new Menu();
-                menu.salvarJogo();
-                menu.executaMenu();
+            if(x == -1){ 
+                Menu.executaMenu();
             }
 
             System.out.print("Digite o número da coluna da sua Esfera:");
             y = numeros.nextInt() - 1;
 
             if(y == -1){
-
-                Menu menu = new Menu();
-                menu.salvarJogo();
-                menu.executaMenu();
+                Menu.executaMenu();
             }
 
             if (x > 8| x < 0 | y > 8 | y <0){
@@ -214,4 +210,13 @@ public class Turno{
             }  
         }
     }
+
+    
+    public void salvarJogo(Jogador jogador1, Jogador jogador2, int[][] tabuleiro){
+
+
+
+    } 
+
+
 }

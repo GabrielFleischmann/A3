@@ -1,14 +1,13 @@
 import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Menu {
 
-    Scanner numeros = new Scanner(System.in);
-    Scanner strings = new Scanner(System.in);
+    public static void executaMenu() {
 
-    public void executaMenu() {
+        Scanner numeros = new Scanner(System.in);
+        Scanner strings = new Scanner(System.in);
+
         System.out.println("Bem-Vindo ao Puzzle Quest 5!");
         System.out.println("Por favor, escolha uma das opções abaixo:");
         System.out.print("1 - Iniciar Novo Jogo\n2 - Carregar Jogo\n3 - Apagar um jogo existente\n0 - Sair\n");
@@ -20,16 +19,7 @@ public class Menu {
             case 1:
                 //GERA DIRETÓRIO PARA ARMAZENAR SAVES E O PRÓPRIO SAVE USANDO AS PERMISSOES DO USUARIO  
                 boolean pastaJogosSalvos = new File(System.getProperty("user.dir") + File.separator + "/Saves").mkdir();
-
-                System.out.print("Digite o nome do novo jogo: ");
-                try {
-                    FileWriter geraSave = new FileWriter("Saves\\" + strings.nextLine().toUpperCase() + ".txt");
-                    geraSave.close();
-                } catch (IOException e) {
-                    System.out.println("Falha ao gerar novo save");
-                    executaMenu();
-                }
-
+                
                 System.out.print("Digite o nome do jogador 1: ");
                 Jogador jogador1 = new Jogador(strings.nextLine().toUpperCase());
 
@@ -43,14 +33,13 @@ public class Menu {
                 inicial.novaJogada(jogador1, jogador2, tab.getTabuleiro(), inicial);
 
                 break;
+                
             //CARREGANDO JOGO
             case 2:
                 System.out.println("Selecione um jogo salvo para carregar:");
                 mostrarSaves();
                 int carregarSave = numeros.nextInt();
-                carregarJogo();
                 break;
-
 
             //DELETANDO JOGO EXISTENTE
             case 3:
@@ -61,22 +50,27 @@ public class Menu {
             case 0:
                 break;
         }
+
+        numeros.close();
+        strings.close();
     }
 
-    //PEGA O DIRETORIO DE SAVES E LISTA OS ARQUIVOS
-    private final File diretorio = new File("Saves\\");
-    private final File[] arquivos = diretorio.listFiles();
+    public static void mostrarSaves(){
+        File diretorio = new File("Saves\\");
+        File[] arquivos = diretorio.listFiles();
 
-    public void mostrarSaves(){
         for (int i = 0; i < arquivos.length; i++) {
             System.out.printf("%s", arquivos[i].getName());
             System.out.println();
         }
     }
 
+    public static void deletarJogo(){
+        File diretorio = new File("Saves\\");
+        File[] arquivos = diretorio.listFiles();
 
-    public void deletarJogo(){
         if(arquivos.length > 0) {
+            Scanner strings = new Scanner(System.in);
 
             System.out.println("Digite o nome completo do save que deseja apagar:");
             mostrarSaves();
@@ -89,33 +83,9 @@ public class Menu {
                 System.out.println("Erro ao deletar save! Tente novamente");
             }
 
+            strings.close();
         }else{
             System.out.println("--- Não há saves para deletar ---");
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    public void carregarJogo(){
-    }
-    public void salvarJogo(){
-    }
-
 }
