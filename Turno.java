@@ -20,18 +20,17 @@ public class Turno{
     public void setAdversario(Jogador adversario) {
         this.adversario = adversario;
     }
-
-    int x;
-    int y;
-
+  
     public void novaJogada(Jogador jogador1, Jogador jogador2, int[][] tabuleiro, Turno inicial){
     
         jogadorDaVez = jogador1;
         adversario = jogador2;
+        int x;
+        int y;
 
         //INÍCIO DO TURNO
         Tabuleiro tab = new Tabuleiro(tabuleiro, inicial);
-        System.out.println("\n(Digitar 0 nas coordenadas sempre salva o jogo e retorna ao menu principal)");
+        System.out.println("\n(Digitar 0 nas coordenadas sempre retorna ao menu principal)");
         tab.imprimeTab();
         System.out.printf("%s\n%s\n", jogadorDaVez, adversario);
 
@@ -40,15 +39,12 @@ public class Turno{
         
         int voltar = 0;
         
-
         do{
             System.out.printf("\nTurno de: %s", jogadorDaVez.getNome());
             System.out.print("\nDigite o número da linha da sua Esfera:");
             x = numeros.nextInt() - 1;
 
-
             if(x == -1){
-
                 Menu menu = new Menu();
                 menu.salvarJogo();
                 menu.executaMenu();
@@ -82,41 +78,59 @@ public class Turno{
         switch (direcao) {
 
             case 'w':
-                elemento = tabuleiro[x-1][y];
-                tabuleiro[x-1][y] = tabuleiro[x][y];
-                tabuleiro [x][y] = elemento;
-                tab.checaEsferas();
+                if(x-1 < 0){
+                    System.out.println("Jogada Inválida, tente novamente");
+                    novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                }else{
+                    elemento = tabuleiro[x-1][y];
+                    tabuleiro[x-1][y] = tabuleiro[x][y];
+                    tabuleiro [x][y] = elemento;
+                    tab.checaEsferas();
+                }
 
             break;
                 
             case 's':
-                elemento = tabuleiro[x+1][y];
-                tabuleiro[x+1][y] = tabuleiro[x][y];
-                tabuleiro [x][y] = elemento;
-                tab.checaEsferas();
+                if(x+1 > 7){
+                    System.out.println("Jogada Inválida, tente novamente");
+                    novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                }else{
+                    elemento = tabuleiro[x+1][y];
+                    tabuleiro[x+1][y] = tabuleiro[x][y];
+                    tabuleiro [x][y] = elemento;
+                    tab.checaEsferas();
+                }
                
             break;
                 
             case 'a':
-                elemento = tabuleiro[x][y-1];
-                tabuleiro[x][y-1] = tabuleiro[x][y];
-                tabuleiro [x][y] = elemento;
-                tab.checaEsferas();
+                if(y-1 < 0){
+                    System.out.println("Jogada Inválida, tente novamente");
+                    novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                }else{
+                    elemento = tabuleiro[x][y-1];
+                    tabuleiro[x][y-1] = tabuleiro[x][y];
+                    tabuleiro [x][y] = elemento;
+                    tab.checaEsferas();
+                }
 
             break;
                 
             case 'd':
-                elemento = tabuleiro[x][y+1];
-                tabuleiro[x][y+1] = tabuleiro[x][y];
-                tabuleiro [x][y] = elemento;
-                tab.checaEsferas();
+                if(y+1 > 7){
+                    System.out.println("Jogada Inválida, tente novamente");
+                    novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                }else{
+                    elemento = tabuleiro[x][y+1];
+                    tabuleiro[x][y+1] = tabuleiro[x][y];
+                    tabuleiro [x][y] = elemento;
+                    tab.checaEsferas();
+                }
 
             break;
         }
+
+        numeros.close();
+        strings.close();
     }
-
-
-
-
-
 }
