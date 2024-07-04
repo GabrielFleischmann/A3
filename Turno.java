@@ -79,11 +79,15 @@ public class Turno{
             }
         }while(voltar == 2);
 
+        //PERGUNTA PARA ONDE MOVER A PEÇA/GERA LOOPING SE O OPÇÃO NÃO FOR VÁLIDA
+        char direcao;
+       
         System.out.print("Digite uma das opções mover a esfera:\nw - Para cima\ns - Para baixo\na - esquerda\nd - direita\n");
-        char direcao = strings.nextLine().toLowerCase().charAt(0);
+        direcao = strings.nextLine().toLowerCase().charAt(0);
+
+
 
         int elemento;
-
         switch (direcao) {
 
             case 'w':

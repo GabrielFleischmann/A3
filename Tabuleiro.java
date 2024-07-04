@@ -6,7 +6,7 @@ public class Tabuleiro{
    private int[][] tabuleiro = new int[8][8];
    private final Random r1 = new Random();
    private Turno turnos;
-   private int tipoDeEsfera = 0;
+   private int tipoDeEsfera;
    
    //CONSTRUTORES
    public Tabuleiro(Turno inicial){
@@ -25,7 +25,6 @@ public class Tabuleiro{
    public void setTipoDeEsfera(int tipoDeEsfera){
         this.tipoDeEsfera = tipoDeEsfera;
     }
-
     public int getTipoDeEsferas(){
         return tipoDeEsfera;
     }
@@ -91,33 +90,31 @@ public class Tabuleiro{
         do{
             temCombo = false;
             quantidadeDeEsferas = 0;
-            setTipoDeEsfera(0);
-            
-            //CASO ALINHE 5 ESFERAS
+            setTipoDeEsfera(7);
+
+            //CASO ALINHE 3 ESFERAS
             //HORIZONTAL
             for (int i = 0; i < tabuleiro.length; i++) {
-                for (int j = 0; j < tabuleiro[i].length-4; j++) {
-                    if((tabuleiro[i][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2]) && (tabuleiro[i][j+2] == tabuleiro[i][j+3]) && (tabuleiro[i][j+3] == tabuleiro[i][j+4])){
+                for (int j = 0; j < tabuleiro.length-2; j++) {
+                    if((tabuleiro[i][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2])){
                         temCombo = true;
-                        turnoExtra = true;
-                        quantidadeDeEsferas = 5;
-                        setTipoDeEsfera(tabuleiro[i][j]);                        
-                    } 
-                }
-            }
-
-            //VERTICAL
-            for (int i = 0; i < tabuleiro.length-4; i++) {
-                for (int j = 0; j < tabuleiro[i].length; j++) {   
-                    if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j]) && (tabuleiro[i+2][j] == tabuleiro[i+3][j]) && (tabuleiro[i+3][j] == tabuleiro[i+4][j])){
-                        temCombo = true;
-                        turnoExtra = true;
-                        quantidadeDeEsferas = 5;
-                        setTipoDeEsfera(tabuleiro[i][j]); 
+                        quantidadeDeEsferas = 3;
+                        setTipoDeEsfera(tabuleiro[i][j]);
                     }
                 }
             }
 
+            //VERTICAL
+            for (int i = 0; i < tabuleiro.length-2; i++) {
+                for (int j = 0; j < tabuleiro.length; j++) {        
+                    if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j])){
+                        temCombo = true;
+                        quantidadeDeEsferas = 3;
+                        setTipoDeEsfera(tabuleiro[i][j]);
+                    }
+                }  
+            } 
+            
             //CASO ALINHE 4 ESFERAS
             //HORIZONTAL
             for (int i = 0; i < tabuleiro.length; i++) {
@@ -138,33 +135,35 @@ public class Tabuleiro{
                         temCombo = true;
                         turnoExtra = true;
                         quantidadeDeEsferas = 4;
-                        setTipoDeEsfera(tabuleiro[i][j]); 
+                        setTipoDeEsfera(tabuleiro[i][j]);  
                     }
                 }
             }
 
-            //CASO ALINHE 3 ESFERAS
+            //CASO ALINHE 5 ESFERAS
             //HORIZONTAL
             for (int i = 0; i < tabuleiro.length; i++) {
-                for (int j = 0; j < tabuleiro.length-2; j++) {
-                    if((tabuleiro[i][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2])){
+                for (int j = 0; j < tabuleiro[i].length-4; j++) {
+                    if((tabuleiro[i][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2]) && (tabuleiro[i][j+2] == tabuleiro[i][j+3]) && (tabuleiro[i][j+3] == tabuleiro[i][j+4])){
                         temCombo = true;
-                        quantidadeDeEsferas = 3;
-                        setTipoDeEsfera(tabuleiro[i][j]); 
-                    }
+                        turnoExtra = true;
+                        quantidadeDeEsferas = 5;
+                        setTipoDeEsfera(tabuleiro[i][j]);                        
+                    } 
                 }
             }
 
             //VERTICAL
-            for (int i = 0; i < tabuleiro.length-2; i++) {
-                for (int j = 0; j < tabuleiro.length; j++) {        
-                    if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j])){
+            for (int i = 0; i < tabuleiro.length-4; i++) {
+                for (int j = 0; j < tabuleiro[i].length; j++) {   
+                    if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j]) && (tabuleiro[i+2][j] == tabuleiro[i+3][j]) && (tabuleiro[i+3][j] == tabuleiro[i+4][j])){
                         temCombo = true;
-                        quantidadeDeEsferas = 3;
-                        setTipoDeEsfera(tabuleiro[i][j]); 
+                        turnoExtra = true;
+                        quantidadeDeEsferas = 5;
+                        setTipoDeEsfera(tabuleiro[i][j]);
                     }
-                }  
-            }  
+                }
+            }
 
             //SWITCH PARA ATRIBUIR AS AÇÕES DAS ESFERAS SE BASEANDO NA VARIAVEL TIPO DE ESFERAS
             switch(getTipoDeEsferas()){
@@ -190,7 +189,6 @@ public class Tabuleiro{
                     }else{
                         turnos.getJogadorDaVez().setVida(turnos.getJogadorDaVez().getVida() + quantidadeDeEsferas);
                     }
-                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
 
                     break;
 
@@ -204,7 +202,6 @@ public class Tabuleiro{
                             }
                         }
                     }
-                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
 
                     break;
 
@@ -218,7 +215,6 @@ public class Tabuleiro{
                             }
                         }
                     }
-                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
 
                     break;
 
@@ -226,7 +222,6 @@ public class Tabuleiro{
                 //Modifica o ouro do adversario para 0
                 case 4: 
                     turnos.getAdversario().setOuro(0);
-                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
 
                     break;
 
@@ -241,7 +236,6 @@ public class Tabuleiro{
                         turnos.getJogadorDaVez().setOuro(0);
                         turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(2);
                     }
-                    turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
 
                     break;
 
@@ -259,10 +253,12 @@ public class Tabuleiro{
                         }else{
                             turnos.getAdversario().setVida(turnos.getAdversario().getVida() - 10);
                             turnos.getAdversario().setVidaMax(turnos.getAdversario().getVidaMax()-10);
-                            turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
                         }
                     }
                                 
+                    break;
+
+                case 7:
                     break;
             }    
 

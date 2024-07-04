@@ -24,8 +24,10 @@ public class Menu {
                 System.out.print("Digite o nome do novo jogo: ");
                 try {
                     FileWriter geraSave = new FileWriter("Saves\\" + strings.nextLine().toUpperCase() + ".txt");
+                    geraSave.close();
                 } catch (IOException e) {
                     System.out.println("Falha ao gerar novo save");
+                    executaMenu();
                 }
 
                 System.out.print("Digite o nome do jogador 1: ");
@@ -37,9 +39,10 @@ public class Menu {
                 //DANDO INÍCIO AO JOGO
                 Turno inicial = new Turno();
                 Tabuleiro tab = new Tabuleiro(inicial);
+                tab.geraTab();
                 inicial.novaJogada(jogador1, jogador2, tab.getTabuleiro(), inicial);
-                
-            break;
+
+                break;
             //CARREGANDO JOGO
             case 2:
                 System.out.println("Selecione um jogo salvo para carregar:");
@@ -60,10 +63,9 @@ public class Menu {
         }
     }
 
-
     //PEGA O DIRETORIO DE SAVES E LISTA OS ARQUIVOS
-    private File diretorio = new File("Saves\\");
-    private File[] arquivos = diretorio.listFiles();
+    private final File diretorio = new File("Saves\\");
+    private final File[] arquivos = diretorio.listFiles();
 
     public void mostrarSaves(){
         for (int i = 0; i < arquivos.length; i++) {
@@ -72,13 +74,6 @@ public class Menu {
         }
     }
 
-    public void carregarJogo(){
-
-    }
-
-    public void salvarJogo(){
-        
-    }
 
     public void deletarJogo(){
         if(arquivos.length > 0) {
@@ -97,6 +92,30 @@ public class Menu {
         }else{
             System.out.println("--- Não há saves para deletar ---");
         }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    public void carregarJogo(){
+    }
+    public void salvarJogo(){
     }
 
 }
