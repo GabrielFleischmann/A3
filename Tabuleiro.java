@@ -254,10 +254,11 @@ public class Tabuleiro{
                     if (turnos.getJogadorDaVez().getExperiencia() >= 10) {
                         turnos.getJogadorDaVez().setExperiencia(0);
                         
-                        if (turnos.getAdversario().getVidaMax()-10 <= 0){
+                        if (turnos.getAdversario().getVidaMax()-10 >= turnos.getAdversario().getVida()){
                             turnos.getAdversario().setVida(0);
                         }else{
-                            turnos.getAdversario().setVidaMax(turnos.getAdversario().getVida()-10);
+                            turnos.getAdversario().setVida(turnos.getAdversario().getVida() - 10);
+                            turnos.getAdversario().setVidaMax(turnos.getAdversario().getVidaMax()-10);
                             turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
                         }
                     }

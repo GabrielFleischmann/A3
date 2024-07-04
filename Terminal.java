@@ -8,4 +8,5 @@ public class Terminal {
     public static final String VERDE = "\u001b[38;5;046m";
     public static final String OURO = "\u001b[38;5;227m";        //AMARELO
     public static final String EXP = "\u001b[38;5;231m";         //BRANCA
+    public static final String ALERTA = "\u001b[38;5;124m";      //VERMELHO
 }
