@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Turno{
+public class Turno implements Serializable{
 
    private Jogador jogadorDaVez;
    private Jogador adversario;
@@ -38,7 +39,7 @@ public class Turno{
     
         //INÍCIO DO TURNO
         Tabuleiro tab = new Tabuleiro(tabuleiro, inicial);
-        System.out.println("\n(Digitar 0 nas coordenadas sempre retorna ao menu principal)");
+        System.out.println("\n(Digitar 0 nas coordenadas sempre retorna ao menu principal e salva o jogo)");
         tab.imprimeTab();
         System.out.printf("%s\n%s\n", jogadorDaVez, adversario);
 
@@ -55,6 +56,7 @@ public class Turno{
             x = numeros.nextInt() - 1;
 
             if(x == -1){ 
+                Saves.salvarJogo(jogador1, jogador2, tabuleiro, inicial);
                 Menu.executaMenu();
             }
 
@@ -62,6 +64,7 @@ public class Turno{
             y = numeros.nextInt() - 1;
 
             if(y == -1){
+                Saves.salvarJogo(jogador1, jogador2, tabuleiro, inicial);
                 Menu.executaMenu();
             }
 
@@ -80,8 +83,6 @@ public class Turno{
        
         System.out.print("Digite uma das opções mover a esfera:\nw - Para cima\ns - Para baixo\na - esquerda\nd - direita\n");
         direcao = strings.nextLine().toLowerCase().charAt(0);
-
-
 
         int elemento;
         switch (direcao) {

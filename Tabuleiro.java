@@ -1,6 +1,7 @@
+import java.io.Serializable;
 import java.util.Random;
 
-public class Tabuleiro{
+public class Tabuleiro implements Serializable{
 
     //ATRIBUTOS
    private int[][] tabuleiro = new int[8][8];

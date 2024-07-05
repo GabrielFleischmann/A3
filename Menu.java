@@ -17,34 +17,31 @@ public class Menu {
         switch (opcao) {
             //NOVO JOGO
             case 1:
-                //GERA DIRETÓRIO PARA ARMAZENAR SAVES E O PRÓPRIO SAVE USANDO AS PERMISSOES DO USUARIO  
+                //GERA DIRETÓRIO PARA ARMAZENAR SAVES
                 boolean pastaJogosSalvos = new File(System.getProperty("user.dir") + File.separator + "/Saves").mkdir();
-                
-                System.out.print("Digite o nome do jogador 1: ");
+
+                //CRIAÇÃO DOS ELEMENTOS PRINCIPAIS DO JOGO
+                System.out.print("Digite o nome do Jogador 1: ");
                 Jogador jogador1 = new Jogador(strings.nextLine().toUpperCase());
-
-                System.out.print("Digite o nome do jogador 2: ");
+        
+                System.out.print("Digite o nome do Jogador 2: ");
                 Jogador jogador2 = new Jogador(strings.nextLine().toUpperCase());
-
-                //DANDO INÍCIO AO JOGO
+        
                 Turno inicial = new Turno();
                 Tabuleiro tab = new Tabuleiro(inicial);
                 tab.geraTab();
                 inicial.novaJogada(jogador1, jogador2, tab.getTabuleiro(), inicial);
-
+                
                 break;
                 
             //CARREGANDO JOGO
             case 2:
-                System.out.println("Selecione um jogo salvo para carregar:");
-                mostrarSaves();
-                int carregarSave = numeros.nextInt();
+                Saves.carregarJogo();
                 break;
 
             //DELETANDO JOGO EXISTENTE
             case 3:
-                deletarJogo();
-                executaMenu();
+                Saves.deletarJogo();
                 break;
 
             case 0:
@@ -53,39 +50,5 @@ public class Menu {
 
         numeros.close();
         strings.close();
-    }
-
-    public static void mostrarSaves(){
-        File diretorio = new File("Saves\\");
-        File[] arquivos = diretorio.listFiles();
-
-        for (int i = 0; i < arquivos.length; i++) {
-            System.out.printf("%s", arquivos[i].getName());
-            System.out.println();
-        }
-    }
-
-    public static void deletarJogo(){
-        File diretorio = new File("Saves\\");
-        File[] arquivos = diretorio.listFiles();
-
-        if(arquivos.length > 0) {
-            Scanner strings = new Scanner(System.in);
-
-            System.out.println("Digite o nome completo do save que deseja apagar:");
-            mostrarSaves();
-
-            File save = new File("Saves\\" + strings.nextLine().toUpperCase());
-
-            if (save.delete()) {
-                System.out.println("O save foi deletado");
-            } else {
-                System.out.println("Erro ao deletar save! Tente novamente");
-            }
-
-            strings.close();
-        }else{
-            System.out.println("--- Não há saves para deletar ---");
-        }
     }
 }

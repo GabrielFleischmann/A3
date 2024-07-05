@@ -1,4 +1,6 @@
-public class Jogador {
+import java.io.Serializable;
+
+public class Jogador implements Serializable{
 
     private String nome;
     private int vidaMax = 20;
