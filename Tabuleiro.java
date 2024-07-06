@@ -166,6 +166,54 @@ public class Tabuleiro implements Serializable{
                 }
             }
 
+            //CASO L        
+            for (int i = 0; i < tabuleiro.length-2; i++) {
+                for (int j = 0; j < tabuleiro[i].length-2; j++) {   
+                    if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j]) && (tabuleiro[i+2][j]== tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2])){
+                        temCombo = true;
+                        turnoExtra = true;
+                        quantidadeDeEsferas = 5;
+                        setTipoDeEsfera(tabuleiro[i][j]);
+                    }
+                }
+            }
+
+            //CASO L PARA ESQUERDA
+            for (int i = 0; i < tabuleiro.length-2; i++) {
+                for (int j = 2; j < tabuleiro[i].length; j++) { 
+                    if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j]) && (tabuleiro[i+2][j]==tabuleiro[i][j-1]) && (tabuleiro[i][j-1] == tabuleiro[i][j-2])){
+                        temCombo = true;
+                        turnoExtra = true;
+                        quantidadeDeEsferas = 5;
+                        setTipoDeEsfera(tabuleiro[i][j]);
+                    }
+                }
+            }
+
+            //CASO L INVERTIDO
+            for (int i = 2; i < tabuleiro.length; i++) {
+                for (int j = 0; j < tabuleiro.length-2; j++) {
+                    if((tabuleiro[i][j] == tabuleiro[i-1][j]) && (tabuleiro[i-1][j] == tabuleiro[i-2][j]) && (tabuleiro[i-2][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2])){
+                        temCombo = true;
+                        turnoExtra = true;
+                        quantidadeDeEsferas = 5;
+                        setTipoDeEsfera(tabuleiro[i][j]);
+                    }
+                }
+            }
+            
+            //CASO L INVERTIDO PARA ESQUERDA
+            for (int i = 2; i < tabuleiro.length; i++) {
+                for (int j = 2; j < tabuleiro[i].length; j++) { 
+                    if((tabuleiro[i][j] == tabuleiro[i-1][j]) && (tabuleiro[i-1][j] == tabuleiro[i-2][j]) && (tabuleiro[i-2][j]== tabuleiro[i][j-1]) && (tabuleiro[i][j-1]==tabuleiro[i][j-2])){
+                        temCombo = true;
+                        turnoExtra = true;
+                        quantidadeDeEsferas = 5;
+                        setTipoDeEsfera(tabuleiro[i][j]);
+                    }
+                }
+            }
+
             //SWITCH PARA ATRIBUIR AS AÇÕES DAS ESFERAS SE BASEANDO NA VARIAVEL TIPO DE ESFERAS
             switch(getTipoDeEsferas()){
                 //AÇÃO DA CAVEIRA
