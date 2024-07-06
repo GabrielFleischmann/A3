@@ -1,11 +1,11 @@
-import java.util.Scanner;
 import java.io.File;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Scanner;
 
 public class Saves{
    
@@ -15,7 +15,7 @@ public class Saves{
         
         try{
             System.out.print("Digite o nome para seu save: ");
-            Path caminho = Paths.get("Saves/" + strings.nextLine().toUpperCase() + ".txt");
+            Path caminho = Paths.get("Saves/" + strings.nextLine().toUpperCase());
             ObjectOutputStream save = new ObjectOutputStream(Files.newOutputStream(caminho));
             
             save.writeObject(jogador1);
@@ -27,7 +27,8 @@ public class Saves{
             strings.close();
             
         }catch(IOException e){
-            e.printStackTrace();
+            System.out.println("Falha ao salvar jogo");
+            turno.novaJogada(jogador1, jogador2, tab, turno);
         }
     }
     
@@ -48,7 +49,8 @@ public class Saves{
             strings.close();
 
         }catch(IOException | ClassNotFoundException a){
-            a.printStackTrace();
+            System.out.println("Falha ao carregar jogo");
+            Menu.executaMenu();
         }
     }
 
