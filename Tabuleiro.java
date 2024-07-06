@@ -223,7 +223,7 @@ public class Tabuleiro implements Serializable{
                         turnos.getAdversario().setVida(0);
 
                     }else{
-                        turnos.getAdversario().setVida((turnos.getAdversario().getVida() - quantidadeDeEsferas) * turnos.getJogadorDaVez().getMultiplicadorDeDanoDoAtaque());
+                        turnos.getAdversario().setVida(turnos.getAdversario().getVida() - (quantidadeDeEsferas  * turnos.getJogadorDaVez().getMultiplicadorDeDanoDoAtaque()));
                         turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(1);
                     }
 
@@ -279,11 +279,12 @@ public class Tabuleiro implements Serializable{
                 //Quando ouro chega a 10, o adversario leva dano dobrado no próximo turno
                 //Obs: Sendo assim se a sequência possui 3 ouros eu ganharia 1 ouro, com 4 - 2 ouros e 5 - 3 ouros            
                 case 5:
-                    turnos.getJogadorDaVez().setOuro(turnos.getJogadorDaVez().getOuro() + (quantidadeDeEsferas - 2));
-
-                    if (turnos.getJogadorDaVez().getOuro() >= 10){
+                    
+                    if (turnos.getJogadorDaVez().getOuro() + (quantidadeDeEsferas - 2) >= 10){
                         turnos.getJogadorDaVez().setOuro(0);
                         turnos.getJogadorDaVez().setMultiplicadorDeDanoDoAtaque(2);
+                    }else{
+                        turnos.getJogadorDaVez().setOuro(turnos.getJogadorDaVez().getOuro() + (quantidadeDeEsferas - 2));
                     }
 
                     break;
@@ -292,17 +293,23 @@ public class Tabuleiro implements Serializable{
                 //Adiciona 1 ponto de experiência por sequência com bônus.
                 //Obs: Sendo assim se a sequencia possui 3 experiência eu ganharia 1 experiência, com 4 - 2 experiência e 5 - 3 experiência
                 case 6:
-                    turnos.getJogadorDaVez().setExperiencia(turnos.getJogadorDaVez().getExperiencia() + (quantidadeDeEsferas - 2));
                     
-                    if (turnos.getJogadorDaVez().getExperiencia() >= 10) {
+                    if (turnos.getJogadorDaVez().getExperiencia() + (quantidadeDeEsferas - 2) >= 10) {
                         turnos.getJogadorDaVez().setExperiencia(0);
                         
-                        if (turnos.getAdversario().getVidaMax()-10 >= turnos.getAdversario().getVida()){
-                            turnos.getAdversario().setVida(0);
-                        }else{
-                            turnos.getAdversario().setVida(turnos.getAdversario().getVida() - 10);
+                        if(turnos.getAdversario().getVidaMax()-10 <= turnos.getAdversario().getVida()){
                             turnos.getAdversario().setVidaMax(turnos.getAdversario().getVidaMax()-10);
+                            turnos.getAdversario().setVida(turnos.getAdversario().getVidaMax());
+                            
+                        }else if (turnos.getAdversario().getVidaMax()-10 > turnos.getAdversario().getVida()){
+                            turnos.getAdversario().setVidaMax(turnos.getAdversario().getVidaMax()-10);
+                            turnos.getAdversario().setVida(turnos.getAdversario().getVida());
+                            
+                        }else{
+                            turnos.getAdversario().setVida(0);
                         }
+                    }else{
+                        turnos.getJogadorDaVez().setExperiencia(turnos.getJogadorDaVez().getExperiencia() + (quantidadeDeEsferas - 2));
                     }
                                 
                     break;
