@@ -67,10 +67,10 @@ public class Saves{
     public static void deletarJogo(){
         File diretorio = new File("Saves/");
         File[] arquivos = diretorio.listFiles();
-        Scanner strings = new Scanner(System.in);
 
         if(arquivos.length > 0) {
-            
+            Scanner strings = new Scanner(System.in);
+
             System.out.println("Digite o nome completo do save que deseja apagar:");
             mostrarSaves();
 
@@ -82,12 +82,12 @@ public class Saves{
                 System.out.println("Erro ao deletar save! Tente novamente");
             }
 
+            strings.close();
         }else{
             System.out.println("--- Não há saves para deletar ---");
         }
-        
+
         Menu.executaMenu();
-        strings.close();
     }
 
 }
