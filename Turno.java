@@ -85,111 +85,117 @@ public class Turno implements Serializable{
         direcao = strings.nextLine().toLowerCase().charAt(0);
 
         int elemento;
-        switch (direcao) {
+        if(direcao == 'a' || direcao == 'w' || direcao == 's' || direcao == 'd'){
+            switch (direcao) {
 
-            case 'w':
-                if(x-1 < 0){
-                    System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
-                    novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
-                }else{
-                    elemento = tabuleiro[x-1][y];
-                    tabuleiro[x-1][y] = tabuleiro[x][y];
-                    tabuleiro [x][y] = elemento;
-                    formaCombo(tabuleiro);
-
-                    if(getFormaCombo() == true){
-                        setFormaCombo(false);
-                        tab.checaEsferas();
-                    }else {
+                case 'w':
+                    if(x-1 < 0){
+                        System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
+                        novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                    }else{
                         elemento = tabuleiro[x-1][y];
                         tabuleiro[x-1][y] = tabuleiro[x][y];
                         tabuleiro [x][y] = elemento;
+                        formaCombo(tabuleiro);
 
+                        if(getFormaCombo() == true){
+                            setFormaCombo(false);
+                            tab.checaEsferas();
+                        }else {
+                            elemento = tabuleiro[x-1][y];
+                            tabuleiro[x-1][y] = tabuleiro[x][y];
+                            tabuleiro [x][y] = elemento;
+
+                            System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
+                            novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                        }
+                    }
+
+                break;
+                    
+                case 's':
+                    if(x+1 > 7){
                         System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
                         novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
-                    }
-                }
-
-            break;
-                
-            case 's':
-                if(x+1 > 7){
-                    System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
-                    novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
-                }else{
-                    elemento = tabuleiro[x+1][y];
-                    tabuleiro[x+1][y] = tabuleiro[x][y];
-                    tabuleiro [x][y] = elemento;
-                    formaCombo(tabuleiro);
-
-                    if(getFormaCombo() == true){
-                        setFormaCombo(false);
-                        tab.checaEsferas();
-                    }else {
+                    }else{
                         elemento = tabuleiro[x+1][y];
                         tabuleiro[x+1][y] = tabuleiro[x][y];
                         tabuleiro [x][y] = elemento;
+                        formaCombo(tabuleiro);
 
+                        if(getFormaCombo() == true){
+                            setFormaCombo(false);
+                            tab.checaEsferas();
+                        }else {
+                            elemento = tabuleiro[x+1][y];
+                            tabuleiro[x+1][y] = tabuleiro[x][y];
+                            tabuleiro [x][y] = elemento;
+
+                            System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
+                            novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                        }
+                    }
+                    
+                break;
+                    
+                case 'a':
+                    if(y-1 < 0){
                         System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
                         novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
-                    }
-                }
-                
-            break;
-                
-            case 'a':
-                if(y-1 < 0){
-                    System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
-                    novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
-                }else{
-                    elemento = tabuleiro[x][y-1];
-                    tabuleiro[x][y-1] = tabuleiro[x][y];
-                    tabuleiro [x][y] = elemento;
-                    formaCombo(tabuleiro);
-
-                    if(getFormaCombo() == true){
-                        setFormaCombo(false);
-                        tab.checaEsferas();
-                    }else {
+                    }else{
                         elemento = tabuleiro[x][y-1];
                         tabuleiro[x][y-1] = tabuleiro[x][y];
                         tabuleiro [x][y] = elemento;
+                        formaCombo(tabuleiro);
 
+                        if(getFormaCombo() == true){
+                            setFormaCombo(false);
+                            tab.checaEsferas();
+                        }else {
+                            elemento = tabuleiro[x][y-1];
+                            tabuleiro[x][y-1] = tabuleiro[x][y];
+                            tabuleiro [x][y] = elemento;
+
+                            System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
+                            novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                        }
+                    }
+
+                break;
+                    
+                case 'd':
+                    if(y+1 > 7){
                         System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
                         novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
-                    }
-                }
-
-            break;
-                
-            case 'd':
-                if(y+1 > 7){
-                    System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
-                    novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
-                }else{
-                    elemento = tabuleiro[x][y+1];
-                    tabuleiro[x][y+1] = tabuleiro[x][y];
-                    tabuleiro [x][y] = elemento;
-                    formaCombo(tabuleiro);
-
-                    if(getFormaCombo() == true){
-                        setFormaCombo(false);
-                        tab.checaEsferas();
-                    }else {
+                    }else{
                         elemento = tabuleiro[x][y+1];
                         tabuleiro[x][y+1] = tabuleiro[x][y];
                         tabuleiro [x][y] = elemento;
+                        formaCombo(tabuleiro);
 
-                        System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
-                        novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                        if(getFormaCombo() == true){
+                            setFormaCombo(false);
+                            tab.checaEsferas();
+                        }else {
+                            elemento = tabuleiro[x][y+1];
+                            tabuleiro[x][y+1] = tabuleiro[x][y];
+                            tabuleiro [x][y] = elemento;
+
+                            System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
+                            novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
+                        }
                     }
-                }
 
-            break;
+                break;
+            }
+
+            numeros.close();
+            strings.close();
+
+        }else{
+            System.out.println(Terminal.ALERTA + "\n---Jogada Inválida. Tente Novamente---" + Terminal.RESET);
+            novaJogada(getJogadorDaVez(), getAdversario(), tabuleiro, inicial);
         }
-
-        numeros.close();
-        strings.close();
     }
 
     public void formaCombo(int[][] tab){
@@ -211,13 +217,4 @@ public class Turno implements Serializable{
             }  
         }
     }
-
-    
-    public void salvarJogo(Jogador jogador1, Jogador jogador2, int[][] tabuleiro){
-
-
-
-    } 
-
-
 }
