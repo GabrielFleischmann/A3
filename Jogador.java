@@ -2,6 +2,7 @@ import java.io.Serializable;
 
 public class Jogador implements Serializable{
 
+    //ATRIBUTOS DO JOGADOR
     private String nome;
     private int vidaMax = 20;
     private int vida = 20;
@@ -62,6 +63,7 @@ public class Jogador implements Serializable{
     }
 
     @Override
+    //SOBRESCRITA DO METÓDO DE IMPRESSÃO
     public String toString(){
         return getNome() + "\nVida:" + getVida() + "/" + getVidaMax() + "\nOuro: " + getOuro() + "\nExp: " + getExperiencia();
     }

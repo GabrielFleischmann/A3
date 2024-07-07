@@ -18,7 +18,7 @@ public class Tabuleiro implements Serializable{
        this.tabuleiro = tab;
        this.turnos = inicial;
     }
-
+    
    public int[][] getTabuleiro(){
        return tabuleiro;
     }
@@ -26,6 +26,7 @@ public class Tabuleiro implements Serializable{
    public void setTipoDeEsfera(int tipoDeEsfera){
         this.tipoDeEsfera = tipoDeEsfera;
     }
+
     public int getTipoDeEsferas(){
         return tipoDeEsfera;
     }
@@ -303,7 +304,6 @@ public class Tabuleiro implements Serializable{
                             
                         }else if (turnos.getAdversario().getVidaMax()-10 > turnos.getAdversario().getVida()){
                             turnos.getAdversario().setVidaMax(turnos.getAdversario().getVidaMax()-10);
-                            turnos.getAdversario().setVida(turnos.getAdversario().getVida());
                             
                         }else{
                             turnos.getAdversario().setVida(0);
@@ -335,6 +335,62 @@ public class Tabuleiro implements Serializable{
     }
     
     public void quebraEsferas(){
+
+        //CASO ALINHE 3 ESFERAS
+        //HORIZONTAL
+        for (int i = 0; i < tabuleiro.length; i++) {
+            for (int j = 0; j < tabuleiro.length-2; j++) {
+                if((tabuleiro[i][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2])){
+                    
+                    //QUEBRA AS ESFERAS
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i][j+1] = 7;
+                    tabuleiro[i][j+2] = 7;
+                }
+            }
+        }
+
+        //VERTICAL
+        for (int i = 0; i < tabuleiro.length-2; i++) {
+            for (int j = 0; j < tabuleiro.length; j++) {        
+                if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j])){
+                    
+                    //QUEBRA AS ESFERAS
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i+1][j] = 7;
+                    tabuleiro[i+2][j] = 7;                    
+                }
+            }  
+        }
+
+        //CASO ALINHE 4 ESFERAS
+        //HORIZONTAL
+        for (int i = 0; i < tabuleiro.length; i++) {
+            for (int j = 0; j < tabuleiro.length-3; j++) {
+                if((tabuleiro[i][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2]) && (tabuleiro[i][j+2] == tabuleiro[i][j+3])){
+
+                    //QUEBRA ESFERAS
+                    tabuleiro[i][j] = 7;    
+                    tabuleiro[i][j+1] = 7;
+                    tabuleiro[i][j+2] = 7;
+                    tabuleiro[i][j+3] = 7;
+                }
+            }
+        }
+
+        //VERTICAL
+        for (int i = 0; i < tabuleiro.length-3; i++) {
+            for (int j = 0; j < tabuleiro.length; j++) {
+                if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j]) && (tabuleiro[i+2][j] == tabuleiro[i+3][j])){
+
+                    //QUEBRA AS ESFERAS
+                    tabuleiro[i][j] = 7;
+                    tabuleiro[i+1][j] = 7;
+                    tabuleiro[i+2][j] = 7;
+                    tabuleiro[i+3][j] = 7;
+                }
+            }
+        }
 
         //CASO ALINHE 5 ESFERAS
         //HORIZONTAL
@@ -368,63 +424,68 @@ public class Tabuleiro implements Serializable{
                 }
             }
         }
-
-        //CASO ALINHE 4 ESFERAS
-        //HORIZONTAL
-        for (int i = 0; i < tabuleiro.length; i++) {
-            for (int j = 0; j < tabuleiro.length-3; j++) {
-                if((tabuleiro[i][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2]) && (tabuleiro[i][j+2] == tabuleiro[i][j+3])){
-
-                    //QUEBRA ESFERAS
-                    tabuleiro[i][j] = 7;    
-                    tabuleiro[i][j+1] = 7;
-                    tabuleiro[i][j+2] = 7;
-                    tabuleiro[i][j+3] = 7;
+        
+        //CASO L        
+            for (int i = 0; i < tabuleiro.length-2; i++) {
+                for (int j = 0; j < tabuleiro[i].length-2; j++) {   
+                    if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j]) && (tabuleiro[i+2][j]== tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2])){
+                        
+                        //QUEBRA ESFERAS
+                        tabuleiro[i][j] = 7;
+                        tabuleiro[i+1][j] = 7;
+                        tabuleiro[i+2][j] = 7;
+                        tabuleiro[i][j+1] = 7;
+                        tabuleiro[i][j+2] = 7;
+                    }
                 }
             }
-        }
 
-        //VERTICAL
-        for (int i = 0; i < tabuleiro.length-3; i++) {
-            for (int j = 0; j < tabuleiro.length; j++) {
-                if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j]) && (tabuleiro[i+2][j] == tabuleiro[i+3][j])){
-
-                    //QUEBRA AS ESFERAS
-                    tabuleiro[i][j] = 7;
-                    tabuleiro[i+1][j] = 7;
-                    tabuleiro[i+2][j] = 7;
-                    tabuleiro[i+3][j] = 7;
+            //CASO L PARA ESQUERDA
+            for (int i = 0; i < tabuleiro.length-2; i++) {
+                for (int j = 2; j < tabuleiro[i].length; j++) { 
+                    if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j]) && (tabuleiro[i+2][j]==tabuleiro[i][j-1]) && (tabuleiro[i][j-1] == tabuleiro[i][j-2])){
+                        
+                        //QUEBRA ESFERAS
+                        tabuleiro[i][j] = 7;
+                        tabuleiro[i+1][j] = 7;
+                        tabuleiro[i+2][j] = 7;
+                        tabuleiro[i][j-1] = 7;
+                        tabuleiro[i][j-2] = 7;
+                    }
                 }
             }
-        }
 
-        //CASO ALINHE 3 ESFERAS
-        //HORIZONTAL
-        for (int i = 0; i < tabuleiro.length; i++) {
-            for (int j = 0; j < tabuleiro.length-2; j++) {
-                if((tabuleiro[i][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2])){
-                    
-                    //QUEBRA AS ESFERAS
-                    tabuleiro[i][j] = 7;
-                    tabuleiro[i][j+1] = 7;
-                    tabuleiro[i][j+2] = 7;
+            //CASO L INVERTIDO
+            for (int i = 2; i < tabuleiro.length; i++) {
+                for (int j = 0; j < tabuleiro.length-2; j++) {
+                    if((tabuleiro[i][j] == tabuleiro[i-1][j]) && (tabuleiro[i-1][j] == tabuleiro[i-2][j]) && (tabuleiro[i-2][j] == tabuleiro[i][j+1]) && (tabuleiro[i][j+1] == tabuleiro[i][j+2])){
+                       
+                        //QUEBRA ESFERAS
+                        tabuleiro[i][j] = 7;
+                        tabuleiro[i-1][j] = 7;
+                        tabuleiro[i-2][j] = 7;
+                        tabuleiro[i][j+1] = 7;
+                        tabuleiro[i][j+2] = 7;
+                    }
                 }
             }
-        }
-
-        //VERTICAL
-        for (int i = 0; i < tabuleiro.length-2; i++) {
-            for (int j = 0; j < tabuleiro.length; j++) {        
-                if((tabuleiro[i][j] == tabuleiro[i+1][j]) && (tabuleiro[i+1][j] == tabuleiro[i+2][j])){
-                    
-                    //QUEBRA AS ESFERAS
-                    tabuleiro[i][j] = 7;
-                    tabuleiro[i+1][j] = 7;
-                    tabuleiro[i+2][j] = 7;                    
+            
+            //CASO L INVERTIDO PARA ESQUERDA
+            for (int i = 2; i < tabuleiro.length; i++) {
+                for (int j = 2; j < tabuleiro[i].length; j++) { 
+                    if((tabuleiro[i][j] == tabuleiro[i-1][j]) && (tabuleiro[i-1][j] == tabuleiro[i-2][j]) && (tabuleiro[i-2][j]== tabuleiro[i][j-1]) && (tabuleiro[i][j-1]==tabuleiro[i][j-2])){
+                       
+                        //QUEBRA ESFERAS
+                        tabuleiro[i][j] = 7;
+                        tabuleiro[i-1][j] = 7;
+                        tabuleiro[i-2][j] = 7;
+                        tabuleiro[i][j-1] = 7;
+                        tabuleiro[i][j-2] = 7;
+                    }
                 }
-            }  
-        }      
+            }
 
+              
         organizaEsferas();
     }
 

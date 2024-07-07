@@ -5,7 +5,7 @@ public class Esferas {
     //CONSTRUTOR DE ESFERAS
     public Esferas(int numeroAleatorio){
 
-        //LEITURA E INTERPRETAÇÃO DO SIMBOLO
+        //LEITURA E INTERPRETAÇÃO DO SIMBOLO, ASSOCIA UM NÚMERO A ESFERA CORRESPONDENTE
         switch (numeroAleatorio) {
 
             case 0:
